@@ -1,0 +1,439 @@
+% !TEX program = xelatex
+% ============================================================
+%  BÁO CÁO TIẾN ĐỘ LẦN 1 — Học phần Tương tác người – máy
+%  Đề tài: EcoSort — Ứng dụng phân loại rác thông minh
+%  Biên dịch 2 lần bằng xelatex để sinh mục lục.
+% ============================================================
+
+\documentclass[13pt,a4paper,oneside]{report}
+
+\usepackage{fontspec}
+\usepackage{polyglossia}
+\setmainlanguage{vietnamese}
+\setmainfont{Times New Roman}
+
+\usepackage[a4paper,top=2.5cm,bottom=2.5cm,left=3cm,right=2cm]{geometry}
+\usepackage{graphicx}
+\usepackage{setspace}
+\usepackage{titlesec}
+\usepackage{indentfirst}
+\makeatletter
+\let\@afterindentfalse\@afterindenttrue
+\@afterindenttrue
+\makeatother
+\usepackage{tocloft}
+\usepackage{array}
+\usepackage{longtable}
+\usepackage{booktabs}
+\usepackage{tabularx}
+\newcolumntype{Y}{>{\raggedright\arraybackslash}X}
+\usepackage{enumitem}
+\usepackage{fancyhdr}
+\usepackage{xcolor}
+\usepackage{hyperref}
+\hypersetup{hidelinks}
+
+\onehalfspacing
+\setlength{\parskip}{4pt}
+\setlength{\parindent}{1.25cm}
+
+\renewcommand{\thechapter}{\Roman{chapter}}
+\renewcommand{\thesection}{\arabic{chapter}.\arabic{section}}
+\renewcommand{\thesubsection}{\arabic{chapter}.\arabic{section}.\arabic{subsection}}
+\titleformat{\chapter}[hang]{\normalfont\Large\bfseries\raggedright}{\thechapter.}{0.5em}{}
+\newcommand{\centerchapter}{%
+  \titleformat{\chapter}[hang]{\normalfont\Large\bfseries\centering}{}{0pt}{}%
+}
+\newcommand{\leftchapter}{%
+  \titleformat{\chapter}[hang]{\normalfont\Large\bfseries\raggedright}{\thechapter.}{0.5em}{}%
+}
+\titleformat{\section}{\normalfont\large\bfseries}{\thesection}{0.6em}{}
+\titleformat{\subsection}{\normalfont\normalsize\bfseries}{\thesubsection}{0.6em}{}
+\titlespacing{\chapter}{0pt}{-10pt}{14pt}
+\titlespacing{\section}{0pt}{14pt}{6pt}
+\titlespacing{\subsection}{0pt}{10pt}{4pt}
+
+\renewcommand{\cftchapfont}{\bfseries}
+\renewcommand{\cftchappagefont}{\bfseries}
+
+% Header: trái = tên nhóm, phải = tên chương
+% Footer: trái = tên báo cáo, phải = số trang
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\small{Nhóm \ldots{} - EcoSort}}
+\fancyhead[R]{\small\leftmark}
+\fancyfoot[L]{\small Báo cáo tiến độ lần 1 - Tương tác người - máy}
+\fancyfoot[R]{\small\thepage}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0.4pt}
+\setlength{\headheight}{15pt}
+
+\renewcommand{\chaptermark}[1]{\markboth{Chương \thechapter.\ #1}{}}
+
+\fancypagestyle{plain}{%
+  \fancyhf{}%
+  \fancyfoot[L]{\small{Báo cáo tiến độ lần 1 - Tương tác người - máy}}%
+  \fancyfoot[R]{\small\thepage}%
+  \renewcommand{\headrulewidth}{0pt}%
+  \renewcommand{\footrulewidth}{0.4pt}%
+}
+
+\setlength{\cftchapnumwidth}{2.8em}
+\setlength{\cftsecnumwidth}{2.8em}
+\renewcommand{\cftchapaftersnum}{.}
+\renewcommand{\cftsecaftersnum}{.}
+
+\begin{document}
+\setlength{\parindent}{1.25cm}
+
+% ============== TRANG BÌA ==============
+\begin{titlepage}
+\begin{center}
+{\large \textbf{ĐẠI HỌC QUỐC GIA HÀ NỘI}}\\[2pt]
+{\large \textbf{TRƯỜNG ĐẠI HỌC CÔNG NGHỆ}}\\[6pt]
+\rule{6cm}{0.6pt}\\[10pt]
+
+\includegraphics[width=3.2cm]{UET.png}\\[20pt]
+
+{\LARGE \textbf{BÁO CÁO TIẾN ĐỘ LẦN 1}}\\[10pt]
+{\large \textbf{HỌC PHẦN: TƯƠNG TÁC NGƯỜI - MÁY}}\\[26pt]
+
+{\large \textbf{ĐỀ TÀI:}}\\[6pt]
+{\Large \textbf{EcoSort - Ứng dụng phân loại rác thông minh}}\\[6pt]
+{\large \textbf{EcoSort - An Intelligent Waste Classification Mobile Application}}\\[36pt]
+
+\begin{flushleft}
+\hspace*{2.2cm}\begin{tabular}{@{}ll@{}}
+\textbf{Giảng viên bộ môn:} & \ldots \\[6pt]
+\textbf{Tên nhóm: 1}             & Nhóm \ldots{} - EcoSort \\[6pt]
+\textbf{Lớp:}                  & \ldots \\[10pt]
+\textbf{Thành viên nhóm:}      & 1. Đào Phương Nam - 23021639 \ldots \\[2pt]
+                               & 2. Ngô Thị Ngọc Linh - 23021608 \ldots \\[2pt]
+                               & 3. Lê Văn C - MSSV \ldots \\[2pt]
+                               & 4. Phạm Thị D - MSSV \ldots \\
+\end{tabular}
+\end{flushleft}
+
+\vfill
+{\large \textbf{Hà Nội, tháng 10 năm 2026}}
+\end{center}
+\end{titlepage}
+
+% ============== LỜI MỞ ĐẦU ==============
+\centerchapter
+\chapter*{LỜI MỞ ĐẦU}
+\addcontentsline{toc}{chapter}{Lời mở đầu}
+
+Báo cáo này là báo cáo tiến độ lần 1 của nhóm 1 trong học phần Tương tác người - máy, trình bày đề xuất đề tài \textbf{EcoSort - Ứng dụng phân loại rác thông minh hỗ trợ phân loại rác tại nguồn cho hộ gia đình}. Báo cáo tuân theo khung nội dung yêu cầu của giảng viên gồm 10 mục: tên đề tài, bài toán, người dùng, giải pháp, công nghệ, điểm nổi bật, dữ liệu, đánh giá, sản phẩm và phân công thành viên.
+
+Nhóm chúng em xin chân thành cảm ơn giảng viên đã hướng dẫn và cho phép nhóm được triển khai đề tài này. Trong quá trình chuẩn bị đề xuất, nhóm chắc chắn còn những điểm chưa hoàn thiện, rất mong nhận được góp ý của thầy/cô để nhóm điều chỉnh phạm vi và kế hoạch cho các giai đoạn tiếp theo.
+
+\begin{flushright}
+\textit{Hà Nội, tháng 10 năm 2026}\\
+\textit{Thay mặt nhóm}\\[36pt]
+\textbf{Nhóm trưởng: Đào Phương Nam}
+\end{flushright}
+
+% ============== MỤC LỤC ==============
+\newpage
+\tableofcontents
+
+% ============== NỘI DUNG CHÍNH ==============
+\leftchapter
+
+% ============================================================
+\chapter{GIỚI THIỆU ĐỀ TÀI VÀ BÀI TOÁN}
+
+\section{Tên đề tài}
+
+\begin{itemize}[leftmargin=1.5cm]
+    \item \textbf{Tiếng Việt:} \textit{EcoSort - Ứng dụng di động phân loại rác thông minh hỗ trợ phân loại rác tại nguồn cho hộ gia đình.}
+    \item \textbf{Tiếng Anh:} \textit{EcoSort - An Intelligent Waste Classification Mobile Application for Household Source Separation.}
+\end{itemize}
+
+\section{Bối cảnh và vấn đề cần giải quyết}
+
+Luật Bảo vệ môi trường 2020 (có hiệu lực đầy đủ từ 01/01/2025) quy định bắt buộc phân loại rác thải sinh hoạt tại nguồn thành ba nhóm chính: \textit{(i)} rác có khả năng tái chế, \textit{(ii)} rác thực phẩm, và \textit{(iii)} rác thải sinh hoạt khác. Tuy nhiên, phần lớn hộ gia đình tại các đô thị lớn (Hà Nội, TP.HCM, Đà Nẵng) vẫn gặp khó khăn do:
+
+\begin{itemize}[leftmargin=1.5cm]
+    \item Không nhớ hoặc không chắc chắn vật phẩm cụ thể (vỏ hộp sữa, túi ni-lông, pin, khẩu trang y tế,\ldots) thuộc nhóm nào.
+    \item Hướng dẫn hiện có chủ yếu là văn bản/áp phích tĩnh, khó tra cứu tức thời tại thùng rác.
+    \item Thiếu phản hồi/động viên nên hành vi phân loại không duy trì được lâu.
+\end{itemize}
+
+\section{Ý nghĩa thực tiễn}
+
+Giúp người dân phân loại rác đúng chỉ trong vài giây bằng camera điện thoại; giảm tỷ lệ phân loại sai, hạ chi phí tái phân loại cho đơn vị thu gom; đồng thời nâng cao nhận thức môi trường - phù hợp với lộ trình xử phạt vi phạm phân loại rác đang được triển khai tại các địa phương.
+
+\section{Hạn chế của các giải pháp hiện có}
+
+Bảng~\ref{tab:solutions} tóm tắt các giải pháp hiện có và hạn chế tương ứng.
+
+\begin{table}[h!]
+\centering
+\caption{So sánh các giải pháp hiện có.}
+\label{tab:solutions}
+\small
+\begin{tabularx}{\linewidth}{@{} l Y @{}}
+\toprule
+\textbf{Giải pháp} & \textbf{Hạn chế} \\
+\midrule
+Áp phích/sổ tay giấy & Tĩnh, khó tra cứu, không bao phủ hết vật phẩm thực tế của Việt Nam. \\
+Website/chatbot hỏi đáp bằng chữ & Người dùng phải mô tả bằng từ ngữ - khó với vật lạ, chậm, không phù hợp người lớn tuổi. \\
+App quốc tế (Oscar Sort, Recycle Coach,\ldots) & Dataset Âu-Mỹ, phân loại theo quy định nước ngoài; nhãn tiếng Anh; không có vật phẩm địa phương (bánh chưng, lá dong, hộp xốp bún phở,\ldots). \\
+Mô hình thị giác máy chung chung (ImageNet) & Nhận biết \textit{tên vật thể} nhưng không ánh xạ sang \textit{nhóm rác} theo quy định Việt Nam; không có hướng dẫn xử lý. \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+% ============================================================
+\chapter{NGƯỜI DÙNG}
+
+\section{Nhóm người dùng mục tiêu}
+
+\begin{itemize}[leftmargin=1.5cm]
+    \item \textbf{Chính (Primary):} Người nội trợ và nhân viên văn phòng 22-55 tuổi tại đô thị, sử dụng smartphone Android/iOS, có nhu cầu phân loại rác đúng để tránh bị nhắc nhở/phạt.
+    \item \textbf{Phụ (Secondary):} Học sinh tiểu học - THCS (học qua trò chơi); người cao tuổi (ưu tiên giọng nói, chữ to).
+\end{itemize}
+
+\section{Persona tiêu biểu}
+
+\textbf{Persona 1 - Chị Lan, 34 tuổi, nhân viên marketing, mẹ 2 con.} Bận rộn, muốn phân loại nhanh nhưng không nhớ hộp sữa Milo có cần rửa sạch rồi mới cho vào rác tái chế không. Mong muốn: \textit{``chỉ cần chụp 1 phát biết ngay''.}
+
+\textbf{Persona 2 - Bác Tâm, 62 tuổi, hưu trí.} Mắt kém, ngại gõ chữ. Mong muốn: \textit{``ứng dụng tự đọc to kết quả, chữ to.''}
+
+\section{Nhu cầu và kịch bản sử dụng}
+
+\begin{enumerate}[label=\textbf{S\arabic*.}, leftmargin=1.5cm]
+    \item \textbf{Phân loại nhanh:} Người dùng mở app $\rightarrow$ chụp hoặc đưa camera vào vật $\rightarrow$ app trả về nhóm rác + mức tin cậy + hướng dẫn xử lý (vd. ``\textit{Rác tái chế - Hãy rửa sạch và bóp dẹt''}).
+    \item \textbf{Tra cứu thủ công:} Người dùng gõ/nói tên vật phẩm $\rightarrow$ app trả về nhóm + ví dụ ảnh.
+    \item \textbf{Học và chơi:} Mini-game ``phân loại rác'' 60 giây, bảng xếp hạng gia đình, tích điểm đổi huy hiệu nhằm duy trì hành vi.
+    \item \textbf{Phản hồi và học tiếp:} Nếu kết quả sai, người dùng chọn nhãn đúng $\rightarrow$ hệ thống ghi nhận để cải thiện (active learning).
+\end{enumerate}
+
+% ============================================================
+\chapter{GIẢI PHÁP}
+
+\section{Ý tưởng hệ thống}
+
+EcoSort là ứng dụng \textbf{di động (Android, có thể mở rộng iOS)} kết hợp \textbf{thị giác máy tính} và \textbf{tương tác đa phương thức (camera + giọng nói + chạm)}. Người dùng chỉ cần hướng camera vào vật phẩm, hệ thống nhận dạng và trả về nhóm rác theo quy định Việt Nam, kèm hướng dẫn xử lý ngắn, phát âm thanh (TTS) và hình ảnh minh họa.
+
+\section{Chức năng chính (MVP ở giai đoạn 1)}
+
+\begin{enumerate}[label=\textbf{F\arabic*.}, leftmargin=1.5cm]
+    \item \textbf{Nhận dạng ảnh thời gian thực:} CNN pretrained chạy on-device (TensorFlow Lite) phân loại 3 nhóm chính + 15-20 lớp con phổ biến ở Việt Nam.
+    \item \textbf{Hướng dẫn xử lý:} Bảng tri thức (rule-based knowledge base JSON) ánh xạ mỗi lớp con sang nhóm rác và lời khuyên.
+    \item \textbf{Tương tác đa phương thức:} Nhập bằng ảnh/giọng nói (Vietnamese ASR), xuất bằng chữ + TTS, hỗ trợ chế độ chữ to - tương phản cao.
+    \item \textbf{Phản hồi/sửa lỗi:} Nút ``Kết quả này sai'' $\rightarrow$ người dùng chọn nhãn đúng; dữ liệu được lưu để tinh chỉnh mô hình (có xin phép).
+    \item \textbf{Gamification cơ bản:} Điểm, chuỗi ngày (streak), huy hiệu khi phân loại đúng.
+\end{enumerate}
+
+\section{Luồng tương tác dự kiến}
+
+\textbf{Luồng chính:} \textit{Mở app $\rightarrow$ Camera $\rightarrow$ Chụp/giữ $\rightarrow$ Suy luận on-device ($<$1 s) $\rightarrow$ Hiển thị thẻ kết quả (nhóm rác, màu đại diện, hướng dẫn, nút phát âm) $\rightarrow$ Người dùng xác nhận / báo sai $\rightarrow$ Cộng điểm.}
+
+Thiết kế theo nguyên lý HCI của Nielsen: phản hồi tức thì ($<$1 s), nhìn thấy trạng thái hệ thống (thanh tin cậy \%), khả năng khôi phục lỗi (nút báo sai), nhất quán màu sắc với quy ước phân loại rác (xanh lá - hữu cơ, cam - tái chế, xám - khác).
+
+% ============================================================
+\chapter{CÔNG NGHỆ}
+
+Bảng~\ref{tab:tech} tổng hợp các thành phần công nghệ dự kiến sử dụng cùng vai trò trong giải pháp.
+
+\begin{table}[h!]
+\centering
+\caption{Công nghệ dự kiến sử dụng và vai trò.}
+\label{tab:tech}
+\small
+\begin{tabularx}{\linewidth}{@{} l Y Y @{}}
+\toprule
+\textbf{Thành phần} & \textbf{Công nghệ dự kiến} & \textbf{Vai trò} \\
+\midrule
+Ứng dụng di động & Flutter (Dart) - cross-platform & UI, camera, điều hướng; viết 1 lần chạy cả Android/iOS, phù hợp nhóm ít thời gian. \\
+Mô hình phân loại ảnh & MobileNetV3 / EfficientNet-Lite0 pretrained ImageNet, fine-tune trên dataset rác & Nhẹ ($<$5 MB), chạy on-device, latency $<$200 ms trên điện thoại tầm trung. \\
+Triển khai mô hình & TensorFlow Lite + GPU delegate & Suy luận offline, không gửi ảnh lên server $\rightarrow$ bảo mật. \\
+Nhận dạng \& tổng hợp giọng nói & Google Speech-to-Text, Flutter TTS (vi-VN) & Hỗ trợ người cao tuổi, kịch bản không dùng tay. \\
+Cơ sở tri thức & JSON tĩnh + Firebase Firestore (cập nhật OTA) & Mapping lớp $\rightarrow$ nhóm rác + hướng dẫn; dễ chỉnh sửa. \\
+Backend nhẹ & Firebase (Auth, Firestore, Storage) & Lưu điểm, phản hồi, dữ liệu người dùng gửi lên; không cần tự dựng server. \\
+Huấn luyện mô hình & Python, PyTorch/TensorFlow, Google Colab (GPU miễn phí) & Tiền xử lý, fine-tune, xuất TFLite. \\
+Thiết kế UI/UX & Figma & Wireframe, prototype trước khi code. \\
+Quản lý mã nguồn & GitHub + GitHub Projects & Phân nhánh theo tính năng, review PR. \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+% ============================================================
+\chapter{ĐIỂM NỔI BẬT}
+
+\begin{itemize}[leftmargin=1.5cm]
+    \item \textbf{Mô hình thị giác máy fine-tune cho ngữ cảnh Việt Nam:} Thu thập và gán nhãn bộ dữ liệu rác đặc thù (hộp xôi xốp, lá chuối, vỏ bánh chưng, chai nước mắm,\ldots) - chưa có trong các dataset quốc tế (TrashNet, TACO).
+    \item \textbf{Hybrid AI + Knowledge Base:} CNN nhận dạng vật thể; knowledge base rule-based ánh xạ sang \textit{nhóm rác theo quy định Việt Nam} + hướng dẫn xử lý. Tách rời giúp cập nhật quy định mới mà không cần retrain mô hình.
+    \item \textbf{Tương tác đa phương thức có chủ đích:} Camera là kênh chính; giọng nói (ASR + TTS) là kênh phụ cho người cao tuổi/khi tay bẩn. Có cơ chế lựa chọn phương thức thích ứng theo cảm biến môi trường (độ sáng, tiếng ồn).
+    \item \textbf{Human-in-the-loop learning:} Nút ``báo sai'' thu thập dữ liệu được người dùng xác nhận, dùng cho vòng fine-tune tiếp theo - phù hợp định hướng \textit{Human-AI Interaction}.
+    \item \textbf{Explainability nhẹ:} Hiển thị bản đồ nhiệt Grad-CAM (``\textit{model đang nhìn vào vùng nào}'') như một tùy chọn ở chế độ ``Giải thích'' - tăng độ tin cậy.
+    \item \textbf{Gamification + nhật ký cá nhân:} Điểm, chuỗi ngày, huy hiệu, biểu đồ ``\textit{bạn đã tái chế bao nhiêu vật tuần này}'' - khuyến khích duy trì hành vi (hướng \textit{Digital Wellbeing/Behavior Change}).
+\end{itemize}
+
+% ============================================================
+\chapter{DỮ LIỆU}
+
+\section{Dữ liệu công khai - khởi tạo nhanh}
+
+\begin{itemize}[leftmargin=1.5cm]
+    \item \textbf{TrashNet} (Stanford): 2.527 ảnh, 6 lớp (glass, paper, cardboard, plastic, metal, trash).
+    \item \textbf{TACO} (Trash Annotations in Context): 1.500+ ảnh ngoài trời, có nhãn phân đoạn.
+    \item \textbf{Garbage Classification (Kaggle)}: $\sim$15.000 ảnh, 12 lớp.
+\end{itemize}
+
+Mục đích: pretrain/benchmark baseline, kiểm tra pipeline sớm.
+
+\section{Dữ liệu tự xây - tạo giá trị khác biệt}
+
+\textbf{EcoSort-VN mini dataset (mục tiêu $\geq$ 3.000 ảnh, 20 lớp)}:
+
+\begin{itemize}[leftmargin=1.5cm]
+    \item Mỗi thành viên chụp 150-200 ảnh/tuần tại nhà, chợ, văn phòng (nhiều góc, nhiều ánh sáng).
+    \item Tăng cường dữ liệu (data augmentation): xoay, lật, thay nền, nhiễu màu, cutout để nhân rộng x5-x10.
+    \item Gán nhãn bằng công cụ Label Studio (miễn phí) theo quy ước nhóm.
+    \item Chia 70/15/15 cho train/val/test; cân bằng số lượng mẫu giữa các lớp.
+\end{itemize}
+
+\section{Dữ liệu người dùng (sau MVP)}
+
+Thu thập ảnh và nhãn do người dùng xác nhận (nút ``báo sai'') theo cơ chế \textit{opt-in} có xin phép rõ ràng, lưu ẩn danh, dùng để tinh chỉnh mô hình. Tuân thủ nguyên tắc đạo đức: không chụp mặt người, có thể từ chối bất kỳ lúc nào.
+
+% ============================================================
+\chapter{ĐÁNH GIÁ}
+
+\section{Kiểm thử chức năng}
+
+Viết test case cho từng chức năng cốt lõi (F1-F5), kiểm thử trên 2 thiết bị thật (1 Android tầm trung, 1 điện thoại cũ 4+ năm) + emulator.
+
+\section{Đánh giá kỹ thuật/AI}
+
+Các chỉ số và mục tiêu cụ thể được tổng hợp trong Bảng~\ref{tab:eval-ai}.
+
+\begin{table}[h!]
+\centering
+\caption{Chỉ số đánh giá kỹ thuật/AI và mục tiêu.}
+\label{tab:eval-ai}
+\small
+\begin{tabularx}{\linewidth}{@{} l Y @{}}
+\toprule
+\textbf{Thành phần} & \textbf{Chỉ số và mục tiêu} \\
+\midrule
+Mô hình phân loại ảnh & Accuracy, Precision, Recall, F1 (macro) trên tập test - \textbf{mục tiêu $\geq$ 85\%} với 3 nhóm chính, $\geq$ 70\% với 20 lớp con. Có ma trận nhầm lẫn. \\
+So sánh baseline & MobileNetV3 fine-tune vs. MobileNetV3 zero-shot vs. EfficientNet-Lite0 - báo cáo accuracy, kích thước mô hình, latency. \\
+Ablation (nếu kịp) & Có/không augmentation; có/không knowledge base; có/không TTS. \\
+Hiệu năng runtime & Latency trung bình, p95; dung lượng app; tiêu thụ pin trong 10 phút sử dụng. \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\section{Đánh giá người dùng (Usability, 8-10 người)}
+
+Mỗi người tham gia thực hiện 4 tác vụ (chụp phân loại chai nhựa, lá chuối, vỏ pin, túi ni-lông bẩn), sau đó điền phiếu.
+
+\begin{itemize}[leftmargin=1.5cm]
+    \item \textbf{Task completion rate} (tỷ lệ hoàn thành đúng).
+    \item \textbf{Task time} (thời gian trung bình/lần phân loại). Mục tiêu $\leq$ 8 giây.
+    \item \textbf{Error rate} và số lần cần giúp đỡ.
+    \item \textbf{SUS - System Usability Scale} (10 câu). Mục tiêu $\geq$ 72 (``good'').
+    \item \textbf{Phỏng vấn ngắn} (3-5 phút) để lấy phản hồi định tính.
+\end{itemize}
+
+\section{Đánh giá tương tác đa phương thức}
+
+Tỷ lệ nhận dạng giọng nói đúng (ASR WER), thời gian phản hồi, tỷ lệ chuyển kênh (voice $\rightarrow$ touch) khi gặp lỗi.
+
+% ============================================================
+\chapter{SẢN PHẨM}
+
+\section{Demo dự kiến}
+
+\begin{itemize}[leftmargin=1.5cm]
+    \item Ứng dụng Android (APK) chạy được end-to-end: mở camera $\rightarrow$ phân loại $\rightarrow$ hiển thị kết quả + hướng dẫn + phát âm thanh $\rightarrow$ ghi điểm.
+    \item Màn hình lịch sử phân loại và huy hiệu.
+    \item Mini-game 60 giây.
+    \item Chế độ Giải thích (Grad-CAM).
+\end{itemize}
+
+\section{Kết quả cần đạt (cuối học phần)}
+
+\begin{itemize}[leftmargin=1.5cm]
+    \item APK cài được trên máy Android 8.0+, chạy offline.
+    \item Mô hình đạt F1 (macro) $\geq$ 0.80 trên tập test tự xây.
+    \item Báo cáo đánh giá người dùng 8-10 người, điểm SUS $\geq$ 72.
+    \item Mã nguồn mở trên GitHub kèm README, video demo 2-3 phút.
+    \item Slide trình bày và poster A1.
+\end{itemize}
+
+\section{Phạm vi KHÔNG đưa vào MVP (giới hạn thời gian)}
+
+Phiên bản iOS, backend tự host, nhận dạng nhiều vật trong 1 khung hình (object detection), AR overlay 3D, thống kê toàn hệ thống - để lại cho hướng phát triển.
+
+% ============================================================
+\chapter{PHÂN CÔNG}
+
+\section{Lộ trình tổng thể}
+
+Lộ trình các tuần và mốc chính được trình bày trong Bảng~\ref{tab:roadmap}.
+
+\begin{table}[h!]
+\centering
+\caption{Lộ trình triển khai theo tuần.}
+\label{tab:roadmap}
+\small
+\begin{tabularx}{\linewidth}{@{} c l Y @{}}
+\toprule
+\textbf{Tuần} & \textbf{Mốc} & \textbf{Nội dung chính} \\
+\midrule
+1-2 & Đề xuất bài toán (\textbf{đang nộp}) & Khảo sát người dùng, persona, scenario, chọn công nghệ. \\
+3-4 & Thiết kế HCI & Wireframe Figma, user flow, test giấy với 3 người. \\
+5-7 & MVP kỹ thuật & Dataset v1, fine-tune MobileNetV3, UI chính, tích hợp TFLite. \\
+8-9 & Tích hợp đa phương thức \& gamification & ASR/TTS, điểm, huy hiệu, nút báo sai. \\
+10-11 & Thử nghiệm người dùng & 8-10 người, SUS, phỏng vấn, sửa lỗi. \\
+12 & Hoàn thiện \& báo cáo cuối & Video demo, poster, slide, nộp sản phẩm. \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\section{Phân công thành viên}
+
+Phân công vai trò và nhiệm vụ của từng thành viên được trình bày trong Bảng~\ref{tab:members}.
+
+\begin{table}[h!]
+\centering
+\caption{Phân công vai trò và nhiệm vụ.}
+\label{tab:members}
+\small
+\begin{tabularx}{\linewidth}{@{} l l Y @{}}
+\toprule
+\textbf{Thành viên} & \textbf{Vai trò chính} & \textbf{Nhiệm vụ dự kiến} \\
+\midrule
+Nguyễn Văn A & Trưởng nhóm, Mobile Dev & Lập kế hoạch, review tiến độ hàng tuần; phát triển UI Flutter (camera, kết quả, lịch sử), tích hợp TFLite model. \\
+Trần Thị B & AI/ML Engineer & Thu thập \& gán nhãn dataset, fine-tune MobileNetV3/EfficientNet, xuất TFLite, benchmark baseline, Grad-CAM, viết chương AI trong báo cáo. \\
+Lê Văn C & HCI/UX Designer, QA & Nghiên cứu người dùng, persona, wireframe Figma, usability test (SUS, phỏng vấn), kiểm thử chức năng, viết chương HCI. \\
+Đào Phương Nam & Backend \& Multimodal Dev & Firebase (Auth, Firestore), knowledge base JSON, tích hợp ASR/TTS tiếng Việt, gamification (điểm, huy hiệu), viết chương hệ thống. \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\section{Nguyên tắc làm việc nhóm}
+
+Nhóm có 4 thành viên đều là sinh viên năm cuối đang đi làm thêm, vì vậy nhóm thống nhất phương thức làm việc tối ưu thời gian:
+
+\begin{itemize}[leftmargin=1.5cm]
+    \item Daily async qua Zalo/Discord; họp 1 tiếng tối Chủ nhật hàng tuần.
+    \item Code review bắt buộc qua Pull Request; không merge trực tiếp vào \texttt{main}.
+    \item Tài liệu dùng chung trên Google Drive; backlog trên GitHub Projects.
+    \item Mỗi thành viên cam kết tối thiểu 6-8 giờ/tuần cho đồ án.
+\end{itemize}
+
+% ============================================================
+\centerchapter
+\chapter*{GHI CHÚ VỀ ĐẠO ĐỨC VÀ DỮ LIỆU}
+\addcontentsline{toc}{chapter}{Ghi chú về đạo đức và dữ liệu}
+
+Dữ liệu người dùng (ảnh phản hồi) chỉ thu thập khi có đồng ý rõ ràng, lưu ẩn danh, có tùy chọn xóa. Ứng dụng không đưa ra khuyến cáo y tế hay kết luận có tính pháp lý về việc xử phạt; chỉ đưa gợi ý phân loại theo tài liệu công khai của Bộ Tài nguyên và Môi trường.
+
+\end{document}
